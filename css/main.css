@@ -1,7 +1,7 @@
 :root{
     --primary-color: #003666;
     --secondary-color: #ff9866;
-    --bg-page-color: #e5eff9;
+    --bg-page-color: #005eb2;
 }
 
 body{
@@ -11,16 +11,23 @@ body{
 
 header{
     background-color: var(--primary-color);
-    border-bottom: 5px solid var(--secondary-color);
+    border-bottom: 3px solid var(--secondary-color);
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
 }
 
 .my-button{
-    color: var(--secondary-color);
+    color: var(--secondary-color) !important;
     padding: .5rem;
     font-weight: 500;
     font-size: 1.5rem;
+}
+
+.my-second-button{
+    background-color: var(--secondary-color) !important;
+    border-radius: 20px !important;
+    color: white !important;
+    font-weight: 600 !important;
 }
 
 .my-circle{
@@ -28,4 +35,11 @@ header{
     height: 50px;
     border-radius: 50%;
     display: block;
+}
+
+#my-textarea{
+    border-radius: 20px;
+    width: 100%;
+    height: 40vh;
+    padding: 1rem;
 }
