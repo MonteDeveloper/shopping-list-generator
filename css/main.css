@@ -30,6 +30,10 @@ footer{
     z-index: 999;
 }
 
+header{
+    background-color: var(--primary-color);
+}
+
 /* * MY CLASSES and IDS------------------------------ */
 
 .my-boxList{
