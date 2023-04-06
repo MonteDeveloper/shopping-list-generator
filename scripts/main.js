@@ -12,6 +12,24 @@ let shoppingListCounter = 0;
 let trashListCounter = 0;
 let newIdCounter = 0;
 
+const pasteButton = document.getElementById('paste-button');
+
+pasteButton.addEventListener('click', async () => {
+   try {
+     const text = await navigator.clipboard.readText();
+     document.getElementById("my-textarea").focus();
+     document.getElementById("my-textarea").value = text;
+     console.log('Text pasted.');
+   } catch (error) {
+     console.log('Failed to read clipboard');
+   }
+});
+
+// pasteButton.addEventListener('click', () => {
+//     document.getElementById("my-textarea").focus();
+//     document.getElementById("my-textarea").value = document.execCommand('paste');
+// })
+
 
 function addElementToList(sectionOrder, trashText){
     if (sectionOrder == 1) {
@@ -26,7 +44,7 @@ function addElementToList(sectionOrder, trashText){
 
                 boxElement.innerHTML += `
             <div class="my-rowList d-flex justify-content-between align-items-center p-2" id="shop-${newIdCounter}" onclick="addElementToList(2, '${listText}'); cancelElementToList(1, ${newIdCounter})">
-                <p class="text-white m-0">
+                <p class="text-start text-white m-0 ms-2 col-9">
                     ${listText}
                 </p>
                 <a class="my-iconButton my-mainButton">
@@ -45,7 +63,7 @@ function addElementToList(sectionOrder, trashText){
 
         boxElement.innerHTML += `
         <div class="my-rowList d-flex justify-content-between align-items-center p-2" id="trash-${newIdCounter}" onclick="addElementToList(-1, '${trashText}'); cancelElementToList(2, ${newIdCounter})">
-            <p class="text-white m-0">
+            <p class="text-start text-white m-0 ms-2 col-9">
                 ${trashText}
             </p>
             <a class="my-iconButton my-mainButton">
@@ -60,7 +78,7 @@ function addElementToList(sectionOrder, trashText){
 
         boxElement.innerHTML += `
         <div class="my-rowList d-flex justify-content-between align-items-center p-2" id="shop-${newIdCounter}" onclick="addElementToList(2, '${trashText}'); cancelElementToList(1, ${newIdCounter})">
-            <p class="text-white m-0">
+            <p class="text-start text-white m-0 ms-2 col-9">
                 ${trashText}
             </p>
             <a class="my-iconButton my-mainButton">
