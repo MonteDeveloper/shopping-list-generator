@@ -12,25 +12,6 @@ let shoppingListCounter = 0;
 let trashListCounter = 0;
 let newIdCounter = 0;
 
-const pasteButton = document.getElementById('paste-button');
-
-pasteButton.addEventListener('click', async () => {
-   try {
-     const text = await navigator.clipboard.readText();
-     document.getElementById("my-textarea").focus();
-     document.getElementById("my-textarea").value = text;
-     console.log('Text pasted.');
-   } catch (error) {
-     console.log('Failed to read clipboard');
-   }
-});
-
-// pasteButton.addEventListener('click', () => {
-//     document.getElementById("my-textarea").focus();
-//     document.getElementById("my-textarea").value = document.execCommand('paste');
-// })
-
-
 function addElementToList(sectionOrder, trashText){
     if (sectionOrder == 1) {
         let text = document.getElementById("my-textarea").value;
@@ -39,19 +20,21 @@ function addElementToList(sectionOrder, trashText){
 
         if (text != "") {
             for (listText of shoppingListTexts) {
-                shoppingListCounter += 1;
-                newIdCounter += 1;
-
-                boxElement.innerHTML += `
-            <div class="my-rowList d-flex justify-content-between align-items-center p-2" id="shop-${newIdCounter}" onclick="addElementToList(2, '${listText}'); cancelElementToList(1, ${newIdCounter})">
-                <p class="text-start text-white m-0 ms-2 col-9">
-                    ${listText}
-                </p>
-                <a class="my-iconButton my-mainButton">
-                    <i class="fa-solid fa-square-check fs-3"></i>
-                </a>
-            </div>
-            `;
+                if(listText.replace(" ", "") != ""){
+                    shoppingListCounter += 1;
+                    newIdCounter += 1;
+    
+                    boxElement.innerHTML += `
+                <div class="my-rowList d-flex justify-content-between align-items-center p-2" id="shop-${newIdCounter}" onclick="addElementToList(2, '${listText}'); cancelElementToList(1, ${newIdCounter})">
+                    <p class="text-start text-white m-0 ms-2 col-9">
+                        ${listText}
+                    </p>
+                    <a class="my-iconButton my-mainButton">
+                        <i class="fa-solid fa-square-check fs-3"></i>
+                    </a>
+                </div>
+                `;
+                }
             }
 
             document.getElementById("my-textarea").value = "";
@@ -156,4 +139,8 @@ function changeMessageBoxVisibility(){
     }else{
         sectionsPage[2].getElementsByClassName("my-messageBox")[0].classList.remove("d-none");
     }
+}
+
+function deleteText(){
+    document.getElementById("my-textarea").value = "";
 }
