@@ -26,7 +26,7 @@ function addElementToList(sectionOrder, trashText){
     
                     boxElement.innerHTML += `
                 <div class="my-rowList d-flex justify-content-between align-items-center p-2" id="shop-${newIdCounter}" onclick="addElementToList(2, '${listText}'); cancelElementToList(1, ${newIdCounter})">
-                    <p class="text-start text-white m-0 ms-2 col-9">
+                    <p class="text-start text-white m-0 ms-2 col-9 text-break">
                         ${listText}
                     </p>
                     <a class="my-iconButton my-mainButton">
@@ -46,7 +46,7 @@ function addElementToList(sectionOrder, trashText){
 
         boxElement.innerHTML += `
         <div class="my-rowList d-flex justify-content-between align-items-center p-2" id="trash-${newIdCounter}" onclick="addElementToList(-1, '${trashText}'); cancelElementToList(2, ${newIdCounter})">
-            <p class="text-start text-white m-0 ms-2 col-9">
+            <p class="text-start text-white m-0 ms-2 col-9 text-break">
                 ${trashText}
             </p>
             <a class="my-iconButton my-mainButton">
@@ -61,7 +61,7 @@ function addElementToList(sectionOrder, trashText){
 
         boxElement.innerHTML += `
         <div class="my-rowList d-flex justify-content-between align-items-center p-2" id="shop-${newIdCounter}" onclick="addElementToList(2, '${trashText}'); cancelElementToList(1, ${newIdCounter})">
-            <p class="text-start text-white m-0 ms-2 col-9">
+            <p class="text-start text-white m-0 ms-2 col-9 text-break">
                 ${trashText}
             </p>
             <a class="my-iconButton my-mainButton">
@@ -91,7 +91,6 @@ function resetList(idSection){
     rowList = Array.from(rowList);
     console.log(rowList.length);
     for (row of rowList) {
-        console.log(row);
         row.remove();
     }
 
@@ -138,6 +137,15 @@ function changeMessageBoxVisibility(){
         sectionsPage[2].getElementsByClassName("my-messageBox")[0].classList.add("d-none");
     }else{
         sectionsPage[2].getElementsByClassName("my-messageBox")[0].classList.remove("d-none");
+    }
+}
+
+function clickAllElementInTheBox(sectionId){
+    let rowList = sectionsPage[sectionId].getElementsByClassName("my-rowList");
+    rowList = Array.from(rowList);
+    console.log(rowList.length);
+    for (row of rowList) {
+        row.click();
     }
 }
 
