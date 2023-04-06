@@ -40,6 +40,12 @@ header{
     background-color: var(--primary-color);
     height: 50vh;
     border-radius: 25px;
+    overflow-y: auto;
+}
+
+.my-rowList{
+    background-color: var(--bg-page-color);
+    border-radius: 20px;
 }
 
 /* ICONs--------------------------------------------- */
@@ -64,7 +70,7 @@ header{
 
 .my-mainButton{
     background-color: var(--secondary-color) !important;
-    border-radius: 20px !important;
+    border-radius: 10px !important;
     color: white !important;
     font-weight: 600 !important;
 }
