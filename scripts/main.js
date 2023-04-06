@@ -10,6 +10,7 @@ const sectionsPage = [addSection, listSection, trashSection];
 
 let shoppingListCounter = 0;
 let trashListCounter = 0;
+let newIdCounter = 0;
 
 
 function addElementToList(sectionOrder, trashText){
@@ -20,8 +21,11 @@ function addElementToList(sectionOrder, trashText){
 
         if (text != "") {
             for (listText of shoppingListTexts) {
+                shoppingListCounter += 1;
+                newIdCounter += 1;
+
                 boxElement.innerHTML += `
-            <div class="my-rowList d-flex justify-content-between align-items-center p-2" onclick="addElementToList(2, '${listText}')">
+            <div class="my-rowList d-flex justify-content-between align-items-center p-2" id="shop-${newIdCounter}" onclick="addElementToList(2, '${listText}'); cancelElementToList(1, ${newIdCounter})">
                 <p class="text-white m-0">
                     ${listText}
                 </p>
@@ -30,16 +34,17 @@ function addElementToList(sectionOrder, trashText){
                 </a>
             </div>
             `;
-                shoppingListCounter += 1;
             }
 
             document.getElementById("my-textarea").value = "";
-            changeMessageBoxVisibility();
         }
-    } else {
+    }else if(sectionOrder == 2) {
         let boxElement = sectionsPage[sectionOrder].getElementsByClassName("my-boxList")[0];
+        trashListCounter += 1;
+        newIdCounter += 1;
+
         boxElement.innerHTML += `
-        <div class="my-firstRowList my-rowList d-flex justify-content-between align-items-center p-2">
+        <div class="my-rowList d-flex justify-content-between align-items-center p-2" id="trash-${newIdCounter}" onclick="addElementToList(-1, '${trashText}'); cancelElementToList(2, ${newIdCounter})">
             <p class="text-white m-0">
                 ${trashText}
             </p>
@@ -48,11 +53,63 @@ function addElementToList(sectionOrder, trashText){
             </a>
         </div>
             `;
-        trashListCounter += 1;
+    }else{
+        let boxElement = sectionsPage[1].getElementsByClassName("my-boxList")[0];
+        shoppingListCounter += 1;
+        newIdCounter += 1;
 
-        changeMessageBoxVisibility();
+        boxElement.innerHTML += `
+        <div class="my-rowList d-flex justify-content-between align-items-center p-2" id="shop-${newIdCounter}" onclick="addElementToList(2, '${trashText}'); cancelElementToList(1, ${newIdCounter})">
+            <p class="text-white m-0">
+                ${trashText}
+            </p>
+            <a class="my-iconButton my-mainButton">
+                <i class="fa-solid fa-square-check fs-3"></i>
+            </a>
+        </div>
+        `;
     }
 
+    changeMessageBoxVisibility();
+}
+function resetList(idSection){
+    let sectionElement;
+
+    if(idSection == 1){
+        sectionElement = document.getElementById("my-listSection");
+
+        shoppingListCounter = 0;
+
+    } else {
+        sectionElement = document.getElementById("my-trashSection");
+
+        trashListCounter = 0;
+    }
+
+    let rowList = sectionElement.getElementsByClassName("my-rowList");
+    rowList = Array.from(rowList);
+    console.log(rowList.length);
+    for (row of rowList) {
+        console.log(row);
+        row.remove();
+    }
+
+    changeMessageBoxVisibility();
+}
+
+function cancelElementToList(idSection, idRow){
+    let sectionName;
+    if(idSection == 1){
+        sectionName = "shop";
+        shoppingListCounter -= 1;
+    }else{
+        sectionName = "trash";
+        trashListCounter -= 1;
+    }
+    let boxElement = document.getElementById(`${sectionName}-${idRow}`);
+
+    boxElement.remove();
+    changeMessageBoxVisibility();
 }
 
 function changeActivity(btnOrder){
