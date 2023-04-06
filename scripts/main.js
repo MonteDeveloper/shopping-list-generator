@@ -74,27 +74,33 @@ function addElementToList(sectionOrder, trashText){
     changeMessageBoxVisibility();
 }
 function resetList(idSection){
-    let sectionElement;
-
-    if(idSection == 1){
-        sectionElement = document.getElementById("my-listSection");
-
-        shoppingListCounter = 0;
-
-    } else {
-        sectionElement = document.getElementById("my-trashSection");
-
-        trashListCounter = 0;
+    if((idSection == 1 && shoppingListCounter > 0) || (idSection == 2 && trashListCounter > 0)){
+        let isExecuted = confirm('Vuoi davvero pulire tutto dalla tua lista "ELIMINATI DI RECENTE"? Non potrai più recuperarla!');
+    
+        if(isExecuted){
+            let sectionElement;
+        
+            if(idSection == 1){
+                sectionElement = document.getElementById("my-listSection");
+        
+                shoppingListCounter = 0;
+        
+            } else {
+                sectionElement = document.getElementById("my-trashSection");
+        
+                trashListCounter = 0;
+            }
+        
+            let rowList = sectionElement.getElementsByClassName("my-rowList");
+            rowList = Array.from(rowList);
+            console.log(rowList.length);
+            for (row of rowList) {
+                row.remove();
+            }
+        
+            changeMessageBoxVisibility();
+        }
     }
-
-    let rowList = sectionElement.getElementsByClassName("my-rowList");
-    rowList = Array.from(rowList);
-    console.log(rowList.length);
-    for (row of rowList) {
-        row.remove();
-    }
-
-    changeMessageBoxVisibility();
 }
 
 function cancelElementToList(idSection, idRow){
