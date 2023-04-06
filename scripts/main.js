@@ -114,8 +114,17 @@ function cancelElementToList(idSection, idRow){
     }
     let boxElement = document.getElementById(`${sectionName}-${idRow}`);
 
-    boxElement.remove();
-    changeMessageBoxVisibility();
+    removeFadeOut(boxElement, 500);
+}
+
+function removeFadeOut(element, speed) {
+    var seconds = speed/1000;
+    element.style.animation = "fadeOutElement "+ seconds + "s forwards";
+
+    setTimeout(function() {
+        element.remove();
+        changeMessageBoxVisibility();
+    }, speed);
 }
 
 function changeActivity(btnOrder){
