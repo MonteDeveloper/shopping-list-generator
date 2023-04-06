@@ -10,7 +10,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="./css/main.css">
 
@@ -22,7 +24,9 @@
 <body>
 
     <header class="p-4">
-        <img class="img-fluid" src="./img/logo/png/logo-no-background.png" alt="logo">
+        <div class="container">
+            <img class="img-fluid" src="./img/logo/png/logo-no-background.png" alt="logo">
+        </div>
     </header>
 
     <main>
@@ -39,21 +43,27 @@
         </section>
 
         <!-- LISTA SPESA -->
-        <section id="my-shoppingSection" class="d-none">
+        <section id="my-listSection">
             <div class="my-boxList d-flex flex-column gap-2 p-2">
-                <div class="my-firstRowList my-rowList d-flex justify-content-between align-items-center p-2">
-                    <p class="text-white m-0">
-                        2 pezzi di pesce crudo
+                <div class="my-messageBox d-flex justify-content-center align-items-center h-100 p-5">
+                    <p class="text-white">
+                        Nessun elemento da visualizzare. <br><br>
+                        Aggiungine uno!
                     </p>
-                    <a class="my-iconButton my-mainButton">
-                        <i class="fa-solid fa-square-check fs-3"></i>
-                    </a>
                 </div>
+                <!-- <div class="my-firstRowList my-rowList d-flex justify-content-between align-items-center p-2">
+                        <p class="text-white m-0">
+                            2 pezzi di pesce crudo
+                        </p>
+                        <a class="my-iconButton my-mainButton">
+                            <i class="fa-solid fa-square-check fs-3"></i>
+                        </a>
+                    </div> -->
             </div>
         </section>
 
         <!-- ELIMINATI DI RECENTE -->
-        <section id="my-trashSection">
+        <section id="my-trashSection" class="d-none">
             <div class="my-boxList d-flex flex-column gap-2 p-2">
                 <div class="my-firstRowList my-rowList d-flex justify-content-between align-items-center p-2">
                     <p class="text-white m-0">
@@ -70,13 +80,13 @@
     <footer>
         <nav>
             <div class="d-flex justify-content-center align-items-center py-2 gap-5">
-                <a class="my-iconButton my-iconActive" href="#">
+                <a class="my-iconButton" href="#" id="my-addSectionBtn" onclick="changeActivity(0); changeSectionPage(0)">
                     <i class="fa-solid fa-circle-plus"></i>
                 </a>
-                <a class="my-iconButton" href="#">
+                <a class="my-iconButton my-iconActive" href="#" id="my-listSectionBtn" onclick="changeActivity(1); changeSectionPage(1)">
                     <i class="fa-solid fa-clipboard-list"></i>
                 </a>
-                <a class="my-iconButton" href="#">
+                <a class="my-iconButton" href="#" id="my-trashSectionBtn" onclick="changeActivity(2); changeSectionPage(2)">
                     <i class="fa-solid fa-trash-can"></i>
                 </a>
             </div>
@@ -87,6 +97,7 @@
     <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js'
         integrity='sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4'
         crossorigin='anonymous'></script>
+    <script src="./scripts/main.js"></script>
 </body>
 
 </html>
