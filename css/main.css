@@ -1,0 +1,31 @@
+:root{
+    --primary-color: #003666;
+    --secondary-color: #ff9866;
+    --bg-page-color: #e5eff9;
+}
+
+body{
+    background-color: var(--bg-page-color) !important;
+    font-family: 'Libre Franklin', sans-serif !important;
+}
+
+header{
+    background-color: var(--primary-color);
+    border-bottom: 5px solid var(--secondary-color);
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+.my-button{
+    color: var(--secondary-color);
+    padding: .5rem;
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+.my-circle{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: block;
+}
