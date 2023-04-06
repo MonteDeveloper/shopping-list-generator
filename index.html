@@ -20,35 +20,52 @@
 </head>
 
 <body>
-    <header>
-        <div class="container text-white">
-            <div class="p-4">
-                <img class="img-fluid" src="./img/logo/png/logo-no-background.png" alt="logo">
-            </div>
-            <div class="d-flex justify-content-center align-items-center pb-3 gap-4">
-                <div class="my-button my-circle d-flex justify-content-center align-items-center bg-white">
-                    <a class="my-button text-decoration-none text-uppercase " href="#">
-                        <i class="fa-solid fa-circle-plus"></i>
-                    </a>
-                </div>
-                <div class="my-button my-circle d-flex justify-content-center align-items-center bg-white">
-                    <a class="my-button text-decoration-none text-uppercase " href="#">
-                        <i class="fa-solid fa-clipboard-list"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
+
+    <header class="p-4">
+        <img class="img-fluid" src="./img/logo/png/logo-no-background.png" alt="logo">
     </header>
 
     <main>
-        <div class="container">
-            <div class="d-flex flex-column align-items-center pt-5 gap-2">
-                <textarea id="my-textarea"></textarea>
-                <button class="btn my-second-button">AGGIUNGI</button>
+        <!-- AGGIUNGI ELEMENTI -->
+        <section id="my-addSection" class="d-none">
+            <textarea id="my-textarea"></textarea>
+
+            <button class="btn my-mainButton">
+                <i class="fa-solid fa-cart-shopping"></i> AGGIUNGI
+            </button>
+            <button class="btn my-mainButton ms-2">
+                <i class="fa-solid fa-paste"></i> INCOLLA
+            </button>
+        </section>
+
+        <!-- LISTA SPESA -->
+        <section id="my-shoppingSection">
+            <div class="my-boxList">
+                
             </div>
-        </div>
-        
+        </section>
+
+        <!-- ELIMINATI DI RECENTE -->
+        <section id="my-trashSection" class="d-none">
+
+        </section>
     </main>
+
+    <footer>
+        <nav>
+            <div class="d-flex justify-content-center align-items-center py-2 gap-5">
+                <a class="my-iconButton my-iconActive" href="#">
+                    <i class="fa-solid fa-circle-plus"></i>
+                </a>
+                <a class="my-iconButton" href="#">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                </a>
+                <a class="my-iconButton" href="#">
+                    <i class="fa-solid fa-trash-can"></i>
+                </a>
+            </div>
+        </nav>
+    </footer>
 
     <!-- JAVASCRIPT -->
     <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js'

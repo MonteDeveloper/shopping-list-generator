@@ -1,40 +1,72 @@
 :root{
-    --primary-color: #003666;
+    --primary-color: #132354;
     --secondary-color: #ff9866;
-    --bg-page-color: #005eb2;
+    --bg-page-color: #081a4a;
 }
+
+/* ? GENERAL TAGS------------------------------------ */
 
 body{
     background-color: var(--bg-page-color) !important;
     font-family: 'Libre Franklin', sans-serif !important;
 }
 
+main{
+    position: absolute;
+    width: 90%;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+footer{
+    background-color: var(--primary-color);
+    border-radius: 50px;
+    position: fixed;
+    bottom: 1rem;
+    left: 5%;
+    width: 90%;
+    z-index: 999;
+}
+
 header{
     background-color: var(--primary-color);
-    border-bottom: 3px solid var(--secondary-color);
-    border-bottom-left-radius: 50px;
-    border-bottom-right-radius: 50px;
 }
 
-.my-button{
-    color: var(--secondary-color) !important;
-    padding: .5rem;
+/* * MY CLASSES and IDS------------------------------ */
+
+.my-boxList{
+    background-color: var(--primary-color);
+    height: 50vh;
+    border-radius: 25px;
+}
+
+/* ICONs--------------------------------------------- */
+.my-iconButton{
     font-weight: 500;
     font-size: 1.5rem;
+    color: #8ca1da !important;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    display: block;
+    text-align: center;
+    border-radius: 50%;
 }
 
-.my-second-button{
+.my-iconActive{
+    color: var(--secondary-color) !important;
+    background-color: white;
+}
+
+/* BUTTONS----------------------------------------------- */
+
+.my-mainButton{
     background-color: var(--secondary-color) !important;
     border-radius: 20px !important;
     color: white !important;
     font-weight: 600 !important;
-}
-
-.my-circle{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: block;
 }
 
 #my-textarea{
