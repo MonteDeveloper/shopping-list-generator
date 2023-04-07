@@ -8,19 +8,52 @@ const listSection = document.getElementById("my-listSection");
 const trashSection = document.getElementById("my-trashSection");
 const sectionsPage = [addSection, listSection, trashSection];
 
-let shoppingListCounter = 0;
-let trashListCounter = 0;
-let newIdCounter = 0;
+let mySpecialChar = "-ß-";
 
-// window.addEventListener("load", function () {
-//     setTimeout(function () {
-//         window.scrollTo(0, 1);
-//     }, 0);
-// });
+// localStorage.clear();
+let shopListTexts;
+try {
+    console.log("shoplist: ", localStorage.shopListTexts);
+    shopListTexts = JSON.parse(localStorage.shopListTexts);
+} catch (error) {
+    // console.error(error);
+    shopListTexts = [];
+}
 
-// window.addEventListener("scroll", function () {
-//     window.scrollTo(0, 1);
-// });
+let trashListTexts;
+try {
+    console.log("trashlist: ", localStorage.trashListTexts);
+    trashListTexts = JSON.parse(localStorage.trashListTexts);
+} catch (error) {
+    // console.error(error);
+    trashListTexts = [];
+}
+
+let shoppingListCounter;
+if(!isNaN(localStorage.shoppingListCounter)) {
+    console.log("shoppingListCounter: ", localStorage.shoppingListCounter);
+    shoppingListCounter = JSON.parse(localStorage.shoppingListCounter);
+} else {
+    shoppingListCounter = 0;
+}
+
+let trashListCounter;
+if(!isNaN(localStorage.trashListCounter)) {
+    console.log("trashListCounter: ", localStorage.trashListCounter);
+    trashListCounter = localStorage.trashListCounter;
+} else {
+    trashListCounter = 0;
+}
+
+let newIdCounter;
+if(!isNaN(localStorage.newIdCounter)) {
+    console.log("newIdCounter: ", localStorage.newIdCounter);
+    newIdCounter = localStorage.newIdCounter;
+} else {
+    newIdCounter = 0;
+}
+
+window.onload = addAllElementOnStorage();
 
 function addElementToList(sectionOrder, trashText){
     if (sectionOrder == 1) {
@@ -35,15 +68,19 @@ function addElementToList(sectionOrder, trashText){
                     newIdCounter += 1;
     
                     boxElement.innerHTML += `
-                <div class="my-rowList d-flex justify-content-between align-items-center p-2" id="shop-${newIdCounter}" onclick="addElementToList(2, '${listText}'); cancelElementToList(1, ${newIdCounter})">
-                    <p class="text-start text-white m-0 ms-2 col-9 text-break">
-                        ${listText}
-                    </p>
-                    <a class="my-iconButton my-mainButton">
-                        <i class="fa-solid fa-square-check fs-3"></i>
-                    </a>
-                </div>
-                `;
+                    <div class="my-rowList d-flex justify-content-between align-items-center p-2" id="shop-${newIdCounter}" onclick="addElementToList(2, '${listText}'); cancelElementToList(1, ${newIdCounter})">
+                        <p class="text-start text-white m-0 ms-2 col-9 text-break">
+                            ${listText}
+                        </p>
+                        <a class="my-iconButton my-mainButton">
+                            <i class="fa-solid fa-square-check fs-3"></i>
+                        </a>
+                    </div>
+                    `;
+
+                    shopListTexts.push(listText + mySpecialChar + newIdCounter);
+                    localStorage.shopListTexts = JSON.stringify(shopListTexts);
+                    console.log("shoplist: ", localStorage.shopListTexts);
                 }
             }
 
@@ -63,7 +100,11 @@ function addElementToList(sectionOrder, trashText){
                 <i class="fa-solid fa-trash-can-arrow-up"></i>
             </a>
         </div>
-            `;
+        `;
+
+        trashListTexts.push(trashText + mySpecialChar + newIdCounter);
+        localStorage.trashListTexts = JSON.stringify(trashListTexts);
+        console.log("trashlist: ", localStorage.trashListTexts);
     }else{
         let boxElement = sectionsPage[1].getElementsByClassName("my-boxList")[0];
         shoppingListCounter += 1;
@@ -79,6 +120,10 @@ function addElementToList(sectionOrder, trashText){
             </a>
         </div>
         `;
+
+        shopListTexts.push(listText + mySpecialChar + newIdCounter);
+        localStorage.shopListTexts = JSON.stringify(shopListTexts);
+        console.log("shoplist: ", localStorage.shopListTexts);
     }
 
     changeMessageBoxVisibility();
@@ -94,11 +139,15 @@ function resetList(idSection){
                 sectionElement = document.getElementById("my-listSection");
         
                 shoppingListCounter = 0;
+                shopListTexts = [];
+                localStorage.shopListTexts = undefined;
         
             } else {
                 sectionElement = document.getElementById("my-trashSection");
         
                 trashListCounter = 0;
+                trashListTexts = [];
+                localStorage.trashListTexts = undefined;
             }
         
             let rowList = sectionElement.getElementsByClassName("my-rowList");
@@ -118,9 +167,17 @@ function cancelElementToList(idSection, idRow){
     if(idSection == 1){
         sectionName = "shop";
         shoppingListCounter -= 1;
+
+        shopListTexts = shopListTexts.filter(item => !item.endsWith(mySpecialChar + idRow));
+
+        localStorage.shopListTexts = JSON.stringify(shopListTexts);
     }else{
         sectionName = "trash";
         trashListCounter -= 1;
+
+        trashListTexts = trashListTexts.filter(item => !item.endsWith(mySpecialChar + idRow));
+
+        localStorage.trashListTexts = JSON.stringify(trashListTexts);
     }
     let boxElement = document.getElementById(`${sectionName}-${idRow}`);
 
@@ -163,6 +220,11 @@ function changeMessageBoxVisibility(){
     }else{
         sectionsPage[2].getElementsByClassName("my-messageBox")[0].classList.remove("d-none");
     }
+
+    localStorage.newIdCounter = newIdCounter;
+    localStorage.trashListCounter = trashListCounter;
+    localStorage.shoppingListCounter = shoppingListCounter;
+    console.log("newIdCounter: ", localStorage.newIdCounter);
 }
 
 function clickAllElementInTheBox(sectionId){
@@ -176,4 +238,11 @@ function clickAllElementInTheBox(sectionId){
 
 function deleteText(){
     document.getElementById("my-textarea").value = "";
+}
+
+function addAllElementOnStorage(){
+    for (textAndId of shopListTexts){
+        let onlyText = textAndId.split(mySpecialChar)[0];
+        addElementToList(1);
+    }
 }
