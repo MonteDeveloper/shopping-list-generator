@@ -12,6 +12,16 @@ let shoppingListCounter = 0;
 let trashListCounter = 0;
 let newIdCounter = 0;
 
+// window.addEventListener("load", function () {
+//     setTimeout(function () {
+//         window.scrollTo(0, 1);
+//     }, 0);
+// });
+
+// window.addEventListener("scroll", function () {
+//     window.scrollTo(0, 1);
+// });
+
 function addElementToList(sectionOrder, trashText){
     if (sectionOrder == 1) {
         let text = document.getElementById("my-textarea").value;

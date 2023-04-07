@@ -6,6 +6,8 @@
 
 /* ? GENERAL TAGS------------------------------------ */
 
+html, body {margin: 0; height: 100%; overflow: hidden}
+
 body{
     background-color: var(--bg-page-color) !important;
     font-family: 'Libre Franklin', sans-serif !important;
