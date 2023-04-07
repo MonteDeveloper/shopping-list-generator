@@ -204,11 +204,21 @@ function changeActivity(btnOrder){
     footerButtons[btnOrder].classList.add("my-iconActive");
 }
 
+// function changeSectionPage(sectionOrder){
+//     for (section of sectionsPage){
+//         section.classList.add("d-none");
+//     }
+//     sectionsPage[sectionOrder].classList.remove("d-none");
+// }
+
 function changeSectionPage(sectionOrder){
-    for (section of sectionsPage){
-        section.classList.add("d-none");
+    if(sectionOrder == 0){
+        document.getElementsByTagName("main")[0].style.setProperty("left", "150%");
+    }else if(sectionOrder == 1){
+        document.getElementsByTagName("main")[0].style.setProperty("left", "50%");
+    }else if(sectionOrder == 2){
+        document.getElementsByTagName("main")[0].style.setProperty("left", "-50%");
     }
-    sectionsPage[sectionOrder].classList.remove("d-none");
 }
 
 function changeMessageBoxVisibility(){

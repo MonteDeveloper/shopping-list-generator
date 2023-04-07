@@ -31,9 +31,9 @@
         </div>
     </header>
 
-    <main>
+    <main class="d-flex">
         <!-- AGGIUNGI ELEMENTI -->
-        <section id="my-addSection" class="d-none">
+        <section id="my-addSection" class="px-4 col-4">
             <textarea id="my-textarea" placeholder="Scrivi qui la tua spesa!&#10;Ricordati di separare ogni elemento andando a capo, come nell'esempio che segue:&#10;&#10;............................................................&#10;2 Rotoli di carta igienica&#10;3 scatole di cereali&#10;6 yogurt&#10;1 gelato a tua scelta&#10;............................................................&#10;&#10;Quando hai finito clicca su 'AGGIUNGI' e controlla la tua lista della spesa!"></textarea>
 
             <button class="btn my-mainButton" onclick="addElementToList(1)">
@@ -45,7 +45,7 @@
         </section>
 
         <!-- LISTA SPESA -->
-        <section id="my-listSection">
+        <section id="my-listSection" class="col-4 px-4">
             <h1 class="text-white">LA MIA SPESA</h1>
             <div class="my-boxList d-flex flex-column gap-2 p-2">
                 <div class="my-messageBox d-flex justify-content-center align-items-center h-100 p-5">
@@ -69,7 +69,7 @@
         </section>
 
         <!-- ELIMINATI DI RECENTE -->
-        <section id="my-trashSection" class="d-none">
+        <section id="my-trashSection" class="px-4 col-4">
             <h1 class="text-white">ELIMINATI DI RECENTE</h1>
             <div class="my-boxList d-flex flex-column gap-2 p-2">
                 <div class="my-messageBox d-flex justify-content-center align-items-center h-100 p-5">
