@@ -10,7 +10,6 @@ const sectionsPage = [addSection, listSection, trashSection];
 
 let mySpecialChar = "-ß-";
 
-// localStorage.clear();
 let shopListTexts;
 try {
     console.log("shoplist: ", localStorage.shopListTexts);
@@ -40,7 +39,7 @@ if(!isNaN(localStorage.shoppingListCounter)) {
 let trashListCounter;
 if(!isNaN(localStorage.trashListCounter)) {
     console.log("trashListCounter: ", localStorage.trashListCounter);
-    trashListCounter = localStorage.trashListCounter;
+    trashListCounter = JSON.parse(localStorage.trashListCounter);
 } else {
     trashListCounter = 0;
 }
@@ -48,12 +47,16 @@ if(!isNaN(localStorage.trashListCounter)) {
 let newIdCounter;
 if(!isNaN(localStorage.newIdCounter)) {
     console.log("newIdCounter: ", localStorage.newIdCounter);
-    newIdCounter = localStorage.newIdCounter;
+    newIdCounter = JSON.parse(localStorage.newIdCounter);
 } else {
     newIdCounter = 0;
 }
 
-window.onload = addAllElementOnStorage();
+if(shopListTexts.length <= 0 && trashListTexts.length <= 0){
+    localStorage.clear();
+}else{
+    addAllElementOnStorage();
+}
 
 function addElementToList(sectionOrder, trashText){
     if (sectionOrder == 1) {
@@ -121,7 +124,7 @@ function addElementToList(sectionOrder, trashText){
         </div>
         `;
 
-        shopListTexts.push(listText + mySpecialChar + newIdCounter);
+        shopListTexts.push(trashText + mySpecialChar + newIdCounter);
         localStorage.shopListTexts = JSON.stringify(shopListTexts);
         console.log("shoplist: ", localStorage.shopListTexts);
     }
@@ -243,6 +246,36 @@ function deleteText(){
 function addAllElementOnStorage(){
     for (textAndId of shopListTexts){
         let onlyText = textAndId.split(mySpecialChar)[0];
-        addElementToList(1);
+
+        let boxElement = sectionsPage[1].getElementsByClassName("my-boxList")[0];
+
+        boxElement.innerHTML += `
+        <div class="my-rowList d-flex justify-content-between align-items-center p-2" id="shop-${newIdCounter}" onclick="addElementToList(2, '${onlyText}'); cancelElementToList(1, ${newIdCounter})">
+            <p class="text-start text-white m-0 ms-2 col-9 text-break">
+                ${onlyText}
+            </p>
+            <a class="my-iconButton my-mainButton">
+                <i class="fa-solid fa-square-check fs-3"></i>
+            </a>
+        </div>
+        `;
     }
+    for (textAndId of trashListTexts){
+        let onlyText = textAndId.split(mySpecialChar)[0];
+        
+        let boxElement = sectionsPage[2].getElementsByClassName("my-boxList")[0];
+
+        boxElement.innerHTML += `
+        <div class="my-rowList d-flex justify-content-between align-items-center p-2" id="trash-${newIdCounter}" onclick="addElementToList(-1, '${onlyText}'); cancelElementToList(2, ${newIdCounter})">
+            <p class="text-start text-white m-0 ms-2 col-9 text-break">
+                ${onlyText}
+            </p>
+            <a class="my-iconButton my-mainButton">
+                <i class="fa-solid fa-trash-can-arrow-up"></i>
+            </a>
+        </div>
+        `;
+    }
+
+    changeMessageBoxVisibility();
 }
