@@ -16,6 +16,7 @@ html, #my-mainContainer {margin: 0; overflow: hidden; position: relative;}
 body{
     background-color: var(--bg-page-color) !important;
     font-family: 'Libre Franklin', sans-serif !important;
+    touch-action: none;
 }
 
 main{
@@ -99,6 +100,10 @@ header{
     border-radius: 10px !important;
     color: white !important;
     font-weight: 600 !important;
+}
+
+.my-mainButton:active{
+    transform: scale(.95);
 }
 
 #my-textarea{

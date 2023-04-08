@@ -11,6 +11,13 @@ const sectionsPage = [addSection, listSection, trashSection];
 let mySpecialChar = "-ß-";
 let myBoxListHeight = window.innerHeight / 2;
 
+
+//serve a non permettere lo zoom così sembra un app a tutti gli effetti
+// attenzione: devi combinarlo con il css body{touch-action: none;}
+document.addEventListener('gesturestart', function (e) {
+    e.preventDefault();
+});
+
 document.getElementById("my-mainContainer").style.height = `${window.innerHeight}px`;
 document.getElementsByClassName("my-boxList")[0].style.height = `${myBoxListHeight}px`;
 document.getElementsByClassName("my-boxList")[1].style.height = `${myBoxListHeight}px`;
