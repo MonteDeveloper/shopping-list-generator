@@ -6,7 +6,12 @@
 
 /* ? GENERAL TAGS------------------------------------ */
 
-html, body {margin: 0; height: 100%; overflow: hidden}
+html, #my-mainContainer {margin: 0; overflow: hidden; position: relative;}
+
+#my-mainContainer{
+    max-width: 500px;
+    margin: 0 auto;
+}
 
 body{
     background-color: var(--bg-page-color) !important;
@@ -28,22 +33,34 @@ footer{
     border-radius: 50px;
     position: fixed;
     bottom: 1rem;
-    left: 5%;
+    left: 50%;
+    transform: translate(-50%, 0);
     width: 90%;
     z-index: 999;
+    height: 66px;
+    max-width: 450px;
 }
 
 header{
     background-color: var(--primary-color);
+    border-radius: 50px;
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 90%;
+    z-index: 999;
+    height: 66px;
+    max-width: 450px;
 }
 
 /* * MY CLASSES and IDS------------------------------ */
 
 .my-boxList{
     background-color: var(--primary-color);
-    height: 45vh;
     border-radius: 25px;
     overflow-y: auto;
+    height: 100%;
 }
 
 .my-rowList{
@@ -52,6 +69,9 @@ header{
     max-height: 2000px;
 }
 
+.my-imgFluid{
+    width: 100%;
+}
 /* ICONs--------------------------------------------- */
 .my-iconButton{
     font-weight: 500;

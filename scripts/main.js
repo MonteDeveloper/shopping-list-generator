@@ -9,6 +9,18 @@ const trashSection = document.getElementById("my-trashSection");
 const sectionsPage = [addSection, listSection, trashSection];
 
 let mySpecialChar = "-ß-";
+let myBoxListHeight = window.innerHeight / 2;
+
+document.getElementById("my-mainContainer").style.height = `${window.innerHeight}px`;
+document.getElementsByClassName("my-boxList")[0].style.height = `${myBoxListHeight}px`;
+document.getElementsByClassName("my-boxList")[1].style.height = `${myBoxListHeight}px`;
+
+window.onresize = function(event) {
+    myBoxListHeight = window.innerHeight / 2;
+    document.getElementById("my-mainContainer").style.height = `${window.innerHeight}px`;
+    document.getElementsByClassName("my-boxList")[0].style.height = `${myBoxListHeight}px`;
+    document.getElementsByClassName("my-boxList")[1].style.height = `${myBoxListHeight}px`;
+};
 
 let shopListTexts;
 try {

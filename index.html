@@ -25,92 +25,94 @@
 
 <body>
 
-    <header class="p-4">
-        <div class="container d-flex justify-content-center">
-            <img class="img-fluid" src="./img/logo/png/logo-no-background.png" alt="logo">
-        </div>
-    </header>
-
-    <main class="d-flex">
-        <!-- AGGIUNGI ELEMENTI -->
-        <section id="my-addSection" class="px-4 col-4">
-            <textarea id="my-textarea" placeholder="Scrivi qui la tua spesa!&#10;Ricordati di separare ogni elemento andando a capo, come nell'esempio che segue:&#10;&#10;............................................................&#10;2 Rotoli di carta igienica&#10;3 scatole di cereali&#10;6 yogurt&#10;1 gelato a tua scelta&#10;............................................................&#10;&#10;Quando hai finito clicca su 'AGGIUNGI' e controlla la tua lista della spesa!"></textarea>
-
-            <button class="btn my-mainButton" onclick="addElementToList(1)">
-                <i class="fa-solid fa-cart-shopping"></i> AGGIUNGI
-            </button>
-            <button class="btn my-mainButton ms-2" onclick="deleteText()">
-                <i class="fa-solid fa-circle-xmark"></i> CANCELLA TUTTO
-            </button>
-        </section>
-
-        <!-- LISTA SPESA -->
-        <section id="my-listSection" class="col-4 px-4">
-            <h1 class="text-white">LA MIA SPESA</h1>
-            <div class="my-boxList d-flex flex-column gap-2 p-2">
-                <div class="my-messageBox d-flex justify-content-center align-items-center h-100 p-5">
-                    <p class="text-white text-muted">
-                        Nessun elemento da visualizzare. <br><br>
-                        <span class="text-success fw-bold">Aggiungi</span> qualcosa alla tua lista della spesa per iniziare!
-                    </p>
+    <div id="my-mainContainer">
+        <header class="p-2">
+            <div class="container d-flex justify-content-center align-items-center h-100">
+                <img class="my-imgFluid px-2" src="./img/logo2/png/logo-no-background.png" alt="logo">
+            </div>
+        </header>
+    
+        <main class="d-flex">
+            <!-- AGGIUNGI ELEMENTI -->
+            <section id="my-addSection" class="px-4 col-4">
+                <textarea id="my-textarea" placeholder="Scrivi qui la tua spesa!&#10;Ricordati di separare ogni elemento andando a capo, come nell'esempio che segue:&#10;&#10;............................................................&#10;2 Rotoli di carta igienica&#10;3 scatole di cereali&#10;6 yogurt&#10;1 gelato a tua scelta&#10;............................................................&#10;&#10;Quando hai finito clicca su 'AGGIUNGI' e controlla la tua lista della spesa!"></textarea>
+    
+                <button class="btn my-mainButton" onclick="addElementToList(1)">
+                    <i class="fa-solid fa-cart-shopping"></i> AGGIUNGI
+                </button>
+                <button class="btn my-mainButton ms-2" onclick="deleteText()">
+                    <i class="fa-solid fa-circle-xmark"></i> CANCELLA TUTTO
+                </button>
+            </section>
+    
+            <!-- LISTA SPESA -->
+            <section id="my-listSection" class="col-4 px-4">
+                <h1 class="text-white fs-5">LA MIA SPESA</h1>
+                <div class="my-boxList d-flex flex-column gap-2 p-2">
+                    <div class="my-messageBox d-flex justify-content-center align-items-center h-100 p-5">
+                        <p class="text-white text-muted">
+                            Nessun elemento da visualizzare. <br><br>
+                            <span class="text-success fw-bold">Aggiungi</span> qualcosa alla tua lista della spesa per iniziare!
+                        </p>
+                    </div>
+                    <!-- <div class="my-firstRowList my-rowList d-flex justify-content-between align-items-center p-2">
+                            <p class="text-white m-0">
+                                2 pezzi di pesce crudo
+                            </p>
+                            <a class="my-iconButton my-mainButton">
+                                <i class="fa-solid fa-square-check fs-3"></i>
+                            </a>
+                        </div> -->
                 </div>
-                <!-- <div class="my-firstRowList my-rowList d-flex justify-content-between align-items-center p-2">
+                <button class="btn my-mainButton mt-2" onclick="clickAllElementInTheBox(1)">
+                    <i class="fa-solid fa-square-check"></i> SPUNTA TUTTO
+                </button>
+            </section>
+    
+            <!-- ELIMINATI DI RECENTE -->
+            <section id="my-trashSection" class="px-4 col-4">
+                <h1 class="text-white fs-5">ELIMINATI DI RECENTE</h1>
+                <div class="my-boxList d-flex flex-column gap-2 p-2">
+                    <div class="my-messageBox d-flex justify-content-center align-items-center h-100 p-5">
+                        <p class="text-white text-muted">
+                            Nessun elemento da visualizzare. <br><br>
+                            Prova ad <span class="text-danger fw-bold">eliminare</span>(quindi spuntare) qualcosa dalla tua lista della spesa!
+                        </p>
+                    </div>
+                    <!-- <div class="my-firstRowList my-rowList d-flex justify-content-between align-items-center p-2">
                         <p class="text-white m-0">
                             2 pezzi di pesce crudo
                         </p>
                         <a class="my-iconButton my-mainButton">
-                            <i class="fa-solid fa-square-check fs-3"></i>
+                            <i class="fa-solid fa-trash-can-arrow-up"></i>
                         </a>
                     </div> -->
-            </div>
-            <button class="btn my-mainButton mt-2" onclick="clickAllElementInTheBox(1)">
-                <i class="fa-solid fa-square-check"></i> SPUNTA TUTTO
-            </button>
-        </section>
-
-        <!-- ELIMINATI DI RECENTE -->
-        <section id="my-trashSection" class="px-4 col-4">
-            <h1 class="text-white">ELIMINATI DI RECENTE</h1>
-            <div class="my-boxList d-flex flex-column gap-2 p-2">
-                <div class="my-messageBox d-flex justify-content-center align-items-center h-100 p-5">
-                    <p class="text-white text-muted">
-                        Nessun elemento da visualizzare. <br><br>
-                        Prova ad <span class="text-danger fw-bold">eliminare</span>(quindi spuntare) qualcosa dalla tua lista della spesa!
-                    </p>
                 </div>
-                <!-- <div class="my-firstRowList my-rowList d-flex justify-content-between align-items-center p-2">
-                    <p class="text-white m-0">
-                        2 pezzi di pesce crudo
-                    </p>
-                    <a class="my-iconButton my-mainButton">
-                        <i class="fa-solid fa-trash-can-arrow-up"></i>
+                <button class="btn my-mainButton mt-2" onclick="clickAllElementInTheBox(2)">
+                    <i class="fa-solid fa-trash-can-arrow-up"></i> RECUPERA TUTTO
+                </button>
+                <button class="btn my-mainButton mt-2 bg-danger" onclick="resetList(2)">
+                    <i class="fa-solid fa-circle-xmark"></i> PULISCI
+                </button>
+            </section>
+        </main>
+    
+        <footer>
+            <nav>
+                <div class="d-flex justify-content-center align-items-center py-2 gap-5">
+                    <a class="my-iconButton" href="#" id="my-addSectionBtn" onclick="changeActivity(0); changeSectionPage(0)">
+                        <i class="fa-solid fa-circle-plus"></i>
                     </a>
-                </div> -->
-            </div>
-            <button class="btn my-mainButton mt-2" onclick="clickAllElementInTheBox(2)">
-                <i class="fa-solid fa-trash-can-arrow-up"></i> RECUPERA TUTTO
-            </button>
-            <button class="btn my-mainButton mt-2 bg-danger" onclick="resetList(2)">
-                <i class="fa-solid fa-circle-xmark"></i> PULISCI
-            </button>
-        </section>
-    </main>
-
-    <footer>
-        <nav>
-            <div class="d-flex justify-content-center align-items-center py-2 gap-5">
-                <a class="my-iconButton" href="#" id="my-addSectionBtn" onclick="changeActivity(0); changeSectionPage(0)">
-                    <i class="fa-solid fa-circle-plus"></i>
-                </a>
-                <a class="my-iconButton my-iconActive" href="#" id="my-listSectionBtn" onclick="changeActivity(1); changeSectionPage(1)">
-                    <i class="fa-solid fa-clipboard-list"></i>
-                </a>
-                <a class="my-iconButton" href="#" id="my-trashSectionBtn" onclick="changeActivity(2); changeSectionPage(2)">
-                    <i class="fa-solid fa-trash-can"></i>
-                </a>
-            </div>
-        </nav>
-    </footer>
+                    <a class="my-iconButton my-iconActive" href="#" id="my-listSectionBtn" onclick="changeActivity(1); changeSectionPage(1)">
+                        <i class="fa-solid fa-clipboard-list"></i>
+                    </a>
+                    <a class="my-iconButton" href="#" id="my-trashSectionBtn" onclick="changeActivity(2); changeSectionPage(2)">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </a>
+                </div>
+            </nav>
+        </footer>
+    </div>
 
     <!-- JAVASCRIPT -->
     <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js'
