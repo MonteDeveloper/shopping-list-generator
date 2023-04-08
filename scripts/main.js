@@ -11,6 +11,7 @@ const sectionsPage = [addSection, listSection, trashSection];
 let mySpecialChar = "-ß-";
 let myBoxListHeight = window.innerHeight / 2;
 
+// localStorage.clear();
 
 //serve a non permettere lo zoom così sembra un app a tutti gli effetti
 // attenzione: devi combinarlo con il css body{touch-action: none;}
@@ -73,6 +74,7 @@ if(!isNaN(localStorage.newIdCounter)) {
 
 if(shopListTexts.length <= 0 && trashListTexts.length <= 0){
     localStorage.clear();
+    console.log("pulito");
 }else{
     addAllElementOnStorage();
 }
@@ -261,8 +263,8 @@ function changeMessageBoxVisibility(){
 
 function clickAllElementInTheBox(sectionId){
     let rowList = sectionsPage[sectionId].getElementsByClassName("my-rowList");
-    rowList = Array.from(rowList);
-    console.log(rowList.length);
+    // rowList = Array.from(rowList);
+    // console.log(rowList.length);
     for (row of rowList) {
         row.click();
     }
@@ -288,6 +290,8 @@ function addAllElementOnStorage(){
             </a>
         </div>
         `;
+
+        newIdCounter += 1;
     }
     for (textAndId of trashListTexts){
         let onlyText = textAndId.split(mySpecialChar)[0];
@@ -304,6 +308,8 @@ function addAllElementOnStorage(){
             </a>
         </div>
         `;
+
+        newIdCounter += 1;
     }
 
     changeMessageBoxVisibility();
