@@ -48,29 +48,29 @@ try {
     trashListTexts = [];
 }
 
-let shoppingListCounter;
-if(!isNaN(localStorage.shoppingListCounter)) {
-    console.log("shoppingListCounter: ", localStorage.shoppingListCounter);
-    shoppingListCounter = JSON.parse(localStorage.shoppingListCounter);
-} else {
-    shoppingListCounter = 0;
-}
+let shoppingListCounter = 0;
+// if(!isNaN(localStorage.shoppingListCounter)) {
+//     console.log("shoppingListCounter: ", localStorage.shoppingListCounter);
+//     shoppingListCounter = JSON.parse(localStorage.shoppingListCounter);
+// } else {
+//     shoppingListCounter = 0;
+// }
 
-let trashListCounter;
-if(!isNaN(localStorage.trashListCounter)) {
-    console.log("trashListCounter: ", localStorage.trashListCounter);
-    trashListCounter = JSON.parse(localStorage.trashListCounter);
-} else {
-    trashListCounter = 0;
-}
+let trashListCounter = 0;
+// if(!isNaN(localStorage.trashListCounter)) {
+//     console.log("trashListCounter: ", localStorage.trashListCounter);
+//     trashListCounter = JSON.parse(localStorage.trashListCounter);
+// } else {
+//     trashListCounter = 0;
+// }
 
-let newIdCounter;
-if(!isNaN(localStorage.newIdCounter)) {
-    console.log("newIdCounter: ", localStorage.newIdCounter);
-    newIdCounter = JSON.parse(localStorage.newIdCounter);
-} else {
-    newIdCounter = 0;
-}
+let newIdCounter = 0;
+// if(!isNaN(localStorage.newIdCounter)) {
+//     console.log("newIdCounter: ", localStorage.newIdCounter);
+//     newIdCounter = JSON.parse(localStorage.newIdCounter);
+// } else {
+//     newIdCounter = 0;
+// }
 
 if(shopListTexts.length <= 0 && trashListTexts.length <= 0){
     localStorage.clear();
@@ -263,10 +263,18 @@ function changeMessageBoxVisibility(){
 
 function clickAllElementInTheBox(sectionId){
     let rowList = sectionsPage[sectionId].getElementsByClassName("my-rowList");
-    // rowList = Array.from(rowList);
-    // console.log(rowList.length);
+    rowList = Array.from(rowList);
+    console.log(rowList.length);
     for (row of rowList) {
         row.click();
+    }
+
+    if(sectionId == 1){
+        shopListTexts = [];
+        localStorage.shopListTexts = undefined;
+    }else{
+        trashListTexts = [];
+        localStorage.trashListTexts = undefined;
     }
 }
 
@@ -275,6 +283,10 @@ function deleteText(){
 }
 
 function addAllElementOnStorage(){
+    newIdCounter = 0;
+    trashListCounter = 0;
+    shoppingListCounter = 0;
+
     for (textAndId of shopListTexts){
         let onlyText = textAndId.split(mySpecialChar)[0];
 
@@ -291,6 +303,7 @@ function addAllElementOnStorage(){
         </div>
         `;
 
+        shoppingListCounter += 1;
         newIdCounter += 1;
     }
     for (textAndId of trashListTexts){
@@ -309,6 +322,7 @@ function addAllElementOnStorage(){
         </div>
         `;
 
+        trashListCounter += 1;
         newIdCounter += 1;
     }
 
