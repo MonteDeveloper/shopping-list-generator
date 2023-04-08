@@ -32,7 +32,7 @@ footer{
     background-color: var(--primary-color);
     border-radius: 50px;
     position: fixed;
-    bottom: 1rem;
+    bottom: 2rem;
     left: 50%;
     transform: translate(-50%, 0);
     width: 90%;
