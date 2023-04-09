@@ -232,14 +232,19 @@ function changeActivity(btnOrder){
 //     sectionsPage[sectionOrder].classList.remove("d-none");
 // }
 
+// function changeSectionPage(sectionOrder){
+//     if(sectionOrder == 0){
+//         document.getElementsByTagName("main")[0].style.setProperty("left", "150%");
+//     }else if(sectionOrder == 1){
+//         document.getElementsByTagName("main")[0].style.setProperty("left", "50%");
+//     }else if(sectionOrder == 2){
+//         document.getElementsByTagName("main")[0].style.setProperty("left", "-50%");
+//     }
+// }
+
 function changeSectionPage(sectionOrder){
-    if(sectionOrder == 0){
-        document.getElementsByTagName("main")[0].style.setProperty("left", "150%");
-    }else if(sectionOrder == 1){
-        document.getElementsByTagName("main")[0].style.setProperty("left", "50%");
-    }else if(sectionOrder == 2){
-        document.getElementsByTagName("main")[0].style.setProperty("left", "-50%");
-    }
+    document.getElementsByTagName("main")[0].style.transform = `translate(calc(-100% / 3 * ${sectionOrder}), -50%)`;
+    console.log(`translate(calc(-100% / 3 * ${sectionOrder}), -50%)`);
 }
 
 function changeMessageBoxVisibility(){
